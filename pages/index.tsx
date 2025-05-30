@@ -82,7 +82,11 @@ export default function Page({ pageData }: PageProps) {
           </div>
         </div>
 
-       
+        <div className="upcomming-section py-10">
+          <div className="">
+            <CardSwiper/>
+          </div>
+        </div>
       </div>
     </>
   );
