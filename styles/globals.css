@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 
 @theme {
   --color-primary: #D4A736;
@@ -10,6 +12,10 @@
   --color-gradient: linear-gradient(86.02deg, rgba(162, 98, 94, 0.75) 0%, rgba(197, 118, 113, 0.75) 96.4%);
 }
 
+
+body {
+ font-family: 'Montserrat', sans-serif;
+}
 .container {
   width: 100%;
   padding-left: 1rem;
@@ -52,6 +58,23 @@ a, button{
   cursor: pointer;
 }
 
+
+.more-info-btn {
+
+display: flex;
+
+justify-content: center;
+align-items: center;
+
+gap: 10px;
+
+
+
+background: #F8F8F8;
+box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.07);
+border-radius: 12px;
+
+}
 
 
 

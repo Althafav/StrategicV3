@@ -160,14 +160,14 @@ export default function MenuComponent() {
             />
           </Link>
 
-          <ul className="menu-items lg:flex hidden gap-10">
+          <ul className="menu-items lg:flex hidden gap-5">
             {pageData.menuitems.value.map((m: any, index: number) => {
               const item: Menuitem = m;
               return (
                 <li key={`menuitem-${index}`} className="relative group">
                   <Link
                     href={item.link.value}
-                    className="inline-flex items-center font-medium text-white"
+                    className="inline-flex items-center font-medium text-white text-white/50 group-hover:text-white transition duration-300"
                   >
                     {item.name.value}
                     {/* only show arrow if there are sub-items */}

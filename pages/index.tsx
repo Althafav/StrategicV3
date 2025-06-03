@@ -2,11 +2,13 @@ import CardSwiper from "@/components/test/swipers/CardSwiper";
 import SpinnerComponent from "@/components/UI/SpinnerComponent";
 
 import { Homev3 } from "@/models/homev3";
+import { Upcomingeventitem } from "@/models/upcomingeventitem";
 
 import Globals from "@/modules/Globals";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 type PageProps = {
   pageData: Homev3 | null;
@@ -83,7 +85,53 @@ export default function Page({ pageData }: PageProps) {
         </div>
 
         <div className="upcomming-section py-10">
-         
+          <div className="container mx-auto">
+            <h3 className="text-black mb-10 font-bold lg:text-3xl tracking-tight  text-left max-w-[600px]">
+              {pageData.eventhighlightsheading.value}
+            </h3>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-5">
+              {pageData.upcomingeventsitems.value.map(
+                (m: any, index: number) => {
+                  const item: Upcomingeventitem = m;
+                  return (
+                    <div
+                      key={index}
+                      className="bg-white p-5 rounded-2xl flex flex-col"
+                    >
+                      <div>
+                        <Image
+                          width={600}
+                          height={600}
+                          quality={100}
+                          src={item.image.value[0]?.url}
+                          alt={item.name.value}
+                          className="h-40 w-full  object-contain bg-primarylight rounded-md mb-3"
+                        />
+                      </div>
+                      <h4 className="text-lg font-semibold mb-1">
+                        {item.name.value}
+                      </h4>
+                      <p className="text-gray-600 mb-1 font-medium">
+                        {item.date.value}
+                      </p>
+                      <p className="text-gray-600 mb-3 text-sm">
+                        {item.venue.value}
+                      </p>
+                      <Link
+                        href={item.link.value}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="more-info-btn font-sm font-medium py-3"
+                      >
+                        Learn more
+                      </Link>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </>
