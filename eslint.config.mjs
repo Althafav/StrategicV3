@@ -10,7 +10,14 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", ),
+  ...compat.extends("next/core-web-vitals"),
+
+  {
+    rules: {
+      "react/no-unescaped-entities": "off", // disable quote escaping
+      "@next/next/no-img-element": "off", // example of another rule to disable
+    },
+  },
 ];
 
 export default eslintConfig;

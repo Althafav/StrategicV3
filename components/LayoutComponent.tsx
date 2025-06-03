@@ -17,10 +17,15 @@ export default function LayoutComponent({ children }: any) {
       });
   }, []);
   return (
-    <React.Fragment>
+    <div className="flex flex-col min-h-screen ">
+      {/* Header */}
       {pageData && <MenuComponent pageData={pageData} />}
-      {children}
+
+      {/* Main content */}
+      <main className="flex-1 ">{children}</main>
+
+      {/* Footer */}
       {pageData && <FooterComponent pageData={pageData} />}
-    </React.Fragment>
+    </div>
   );
 }
