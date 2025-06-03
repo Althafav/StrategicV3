@@ -9,6 +9,9 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import InteractiveWorldMap2 from "@/components/map/InteractiveWorldMap2";
+import UpcomingCarousel from "@/components/Home/upcoming/UpcomingCarousel";
 
 type PageProps = {
   pageData: Homev3 | null;
@@ -86,53 +89,95 @@ export default function Page({ pageData }: PageProps) {
 
         <div className="upcomming-section py-10">
           <div className="container mx-auto">
-            <h3 className="text-black mb-10 font-bold lg:text-3xl tracking-tight  text-left max-w-[600px]">
+            <h3 className="text-black mb-10 font-bold text-2xl sm:text-3xl tracking-tight  text-left max-w-[600px]">
               {pageData.eventhighlightsheading.value}
             </h3>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-5">
-              {pageData.upcomingeventsitems.value.map(
-                (m: any, index: number) => {
-                  const item: Upcomingeventitem = m;
-                  return (
-                    <div
-                      key={index}
-                      className="bg-white p-5 rounded-2xl flex flex-col"
-                    >
-                      <div>
-                        <Image
-                          width={600}
-                          height={600}
-                          quality={100}
-                          src={item.image.value[0]?.url}
-                          alt={item.name.value}
-                          className="h-40 w-full  object-contain bg-primarylight rounded-md mb-3"
-                        />
-                      </div>
-                      <h4 className="text-lg font-semibold mb-1">
-                        {item.name.value}
-                      </h4>
-                      <p className="text-gray-600 mb-1 font-medium">
-                        {item.date.value}
-                      </p>
-                      <p className="text-gray-600 mb-3 text-sm">
-                        {item.venue.value}
-                      </p>
-                      <Link
-                        href={item.link.value}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="more-info-btn font-sm font-medium py-3"
-                      >
-                        Learn more
-                      </Link>
-                    </div>
-                  );
-                }
-              )}
+            <div className="">
+              <UpcomingCarousel items={pageData.upcomingeventsitems.value}/>
             </div>
           </div>
         </div>
+
+        <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-slate-50 to-slate-100 py-10 ">
+          {/* Decorative blurred shape */}
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,theme(colors.primary/20)_0%,transparent_70%)]"
+          />
+          <div className="container mx-auto  max-w-5xl">
+            {/* Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight"
+            >
+              The&nbsp;
+              <span className="text-primary">Strategic</span> Difference
+            </motion.h2>
+
+            {/* Body */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-8 space-y-6 text-lg leading-relaxed text-slate-700"
+            >
+              <p>
+                From dunes and desert palms to soaring high-rises and a buzzing
+                business hub, the&nbsp;
+                <strong className="font-semibold">
+                  United Arab Emirates
+                </strong>{" "}
+                continues to grow radically, driven by a vision of sustained
+                success.
+              </p>
+
+              <p>
+                Founded in this very land&nbsp;
+                <strong className="font-semibold">25 years ago</strong>,{" "}
+                <em>Strategic Exhibitions & Conferences</em>&nbsp;— under
+                Strategic Holding — follows that same philosophy: creating
+                opportunity by bringing the best the world has to offer onto one
+                common ground.
+              </p>
+
+              <p>
+                Our specialty lies in organising{" "}
+                <strong className="font-semibold">large-scale events</strong>{" "}
+                with crystal-clear objectives across multiple industries. Every
+                edition is more innovative than the last, leaving a lasting
+                impression through knowledge transfer, powerful connections, new
+                geographies, and tangible economic value.
+              </p>
+
+              <p>
+                A record of{" "}
+                <strong className="font-semibold">strategic alliances</strong>{" "}
+                with renowned international organisations and esteemed local
+                institutions cements our reputation as a trusted partner.
+              </p>
+
+              <p>
+                With offices spread across{" "}
+                <span className="whitespace-nowrap">
+                  KSA, Egypt, China, India, Latin America
+                </span>{" "}
+                and beyond, our{" "}
+                <strong className="font-semibold">global footprint</strong>{" "}
+                enables truly localised service — empowering industries{" "}
+                <em>and</em> individuals worldwide.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        <section>
+          <InteractiveWorldMap2/>
+        </section>
       </div>
     </>
   );

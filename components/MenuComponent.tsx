@@ -1,3 +1,4 @@
+import { Globals2026 } from "@/models/globals2026";
 import { Menu } from "@/models/menu";
 import { Menuitem } from "@/models/menuitem";
 
@@ -9,9 +10,13 @@ import React, { useEffect, useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { MdKeyboardArrowDown, MdOutlineMenu } from "react-icons/md";
 
-export default function MenuComponent() {
+interface Props {
+  pageData: Globals2026;
+}
+
+export default function MenuComponent({ pageData }: Props) {
   const router = useRouter();
-  const [pageData, setPageData] = useState<Menu | null>(null);
+
   const [menuToggle, setIsMenuToggle] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const toggleMobileItem = (idx: number) => {
@@ -19,15 +24,6 @@ export default function MenuComponent() {
   };
 
   useEffect(() => {
-    const codename = "menu_2026";
-
-    Globals.KontentClient.item(codename)
-      .withParameter("depth", "3")
-      .toObservable()
-      .subscribe((response: any) => {
-        setPageData(response.item);
-      });
-
     const handleRouteChange = () => setIsMenuToggle(false);
     router.events.on("routeChangeStart", handleRouteChange);
 
@@ -50,20 +46,29 @@ export default function MenuComponent() {
         <div className="container mx-auto">
           <div className="flex justify-end">
             <div className="flex items-center gap-2 ">
-              <Link href={pageData.linkedinurl.value} target="_blank">
+              <Link
+                href={pageData.sociallinksLinkedinurl.value}
+                target="_blank"
+              >
                 <FaLinkedinIn
                   size={34}
                   className="bg-white text-primary p-[8px] rounded-full"
                 />
               </Link>
-              <Link href={pageData.facebookurl.value} target="_blank">
+              <Link
+                href={pageData.sociallinksFacebookurl.value}
+                target="_blank"
+              >
                 <FaFacebook
                   size={34}
                   className="bg-white text-primary p-[8px] rounded-full"
                 />
               </Link>
 
-              <Link href={pageData.instagramurl.value} target="_blank">
+              <Link
+                href={pageData.sociallinksInstagramurl.value}
+                target="_blank"
+              >
                 <FaInstagram
                   size={34}
                   className="bg-white text-primary p-[8px] rounded-full"

@@ -2,6 +2,11 @@
 @plugin "@tailwindcss/typography";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
+@import 'swiper/css';
+
+/* 2. Swiper modules (optional, but recommended) */
+@import 'swiper/css/pagination';
+@import 'swiper/css/navigation';
 
 @theme {
   --color-primary: #D4A736;
