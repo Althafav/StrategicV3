@@ -12,7 +12,12 @@ export default function FooterComponent({ pageData }: Props) {
     return null;
   }
   return (
-    <div className="footer-component-wrapper bg-black text-white py-8">
+    <div className="footer-component-wrapper overflow-hidden relative bg-black text-white py-8">
+      {/* <img
+        src="/assets/imgs/patern-color.png"
+        alt=""
+        className="footer-patern"
+      /> */}
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <Link href="/">
@@ -65,9 +70,7 @@ export default function FooterComponent({ pageData }: Props) {
         </div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center">
           <div className="text-left mb-4 md:mb-0">
-            <p className="text-sm">
-              © Strategic Exhibitions & Conferences 
-            </p>
+            <p className="text-sm">© Strategic Exhibitions & Conferences</p>
           </div>
           <div className="flex gap-4">
             <Link

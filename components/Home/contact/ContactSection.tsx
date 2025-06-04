@@ -5,7 +5,7 @@ import { FaEnvelopeOpenText } from "react-icons/fa";
 
 export default function ContactSection() {
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-20 container mx-auto">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-8">
         <motion.div
           initial={{ y: -20, opacity: 0 }}
