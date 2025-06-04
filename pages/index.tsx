@@ -12,6 +12,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import InteractiveWorldMap2 from "@/components/map/InteractiveWorldMap2";
 import UpcomingCarousel from "@/components/Home/upcoming/UpcomingCarousel";
+import ServicesSection from "@/components/Home/service/ServiceSection";
+import ServicesRibbon from "@/components/Home/service/ServicesRibbon";
+import ContactSection from "@/components/Home/contact/ContactSection";
 
 type PageProps = {
   pageData: Homev3 | null;
@@ -94,17 +97,14 @@ export default function Page({ pageData }: PageProps) {
             </h3>
 
             <div className="">
-              <UpcomingCarousel items={pageData.upcomingeventsitems.value}/>
+              <UpcomingCarousel items={pageData.upcomingeventsitems.value} />
             </div>
           </div>
         </div>
 
         <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-slate-50 to-slate-100 py-10 ">
           {/* Decorative blurred shape */}
-          <div
-            aria-hidden
-            className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,theme(colors.primary/20)_0%,transparent_70%)]"
-          />
+         
           <div className="container mx-auto  max-w-5xl">
             {/* Heading */}
             <motion.h2
@@ -176,8 +176,12 @@ export default function Page({ pageData }: PageProps) {
         </section>
 
         <section>
-          <InteractiveWorldMap2/>
+          <InteractiveWorldMap2 />
         </section>
+      
+        <ServicesRibbon />
+
+        <ContactSection/>
       </div>
     </>
   );

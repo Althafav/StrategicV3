@@ -1,10 +1,16 @@
 // components/ContactUsSection.tsx
 import { BusinessNature, CountriesData } from "@/constants/ConstData";
+import Globals from "@/modules/Globals";
+import JsLoader from "@/modules/JsLoader";
 import { motion } from "framer-motion";
+import Script from "next/script";
+import { useEffect } from "react";
 
 export default function ContactUsSection() {
   const heading = "Looking to organize an event? Get in touch with us.";
-
+  useEffect(() => {
+    JsLoader.loadFile(`${Globals.BASE_URL}assets/js/contactus.js`);
+  }, []);
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-slate-100 py-16 lg:py-24">
       {/* Decorative radial highlight */}
@@ -172,6 +178,18 @@ export default function ContactUsSection() {
           </div>
         </motion.div>
       </div>
+
+      {/* custom behaviours for the form */}
+      <Script
+        src="/assets/js/contactus.js"
+        strategy="afterInteractive" // load right after hydration
+      />
+
+      {/* load reCAPTCHA only once, too */}
+      <Script
+        src="https://www.google.com/recaptcha/api.js"
+        strategy="afterInteractive"
+      />
     </section>
   );
 }
